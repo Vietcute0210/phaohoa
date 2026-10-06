@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Dành riêng cho Tâmm 💕 - Đêm Hội Pháo Hoa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <!-- Starfield background & Canvas Fireworks -->
+  <div class="night-stars" id="nightStars"></div>
+  <canvas id="fireworksCanvas"></canvas>
+
+  <!-- Audio element (Optional BGM file with Web Audio fallback) -->
+  <audio id="bgmAudio" loop preload="auto">
+    <source src="assets/bgm.mp3" type="audio/mp3">
+  </audio>
+
+  <!-- Mobile phone frame wrapper -->
+  <div class="app-container">
+    <div class="phone-frame">
+      <!-- Performance Stats Widget (FPS & Active Particles) -->
+      <div class="stats-badge" id="statsBadge" title="Nhấp để ẩn/hiện thông số">
+        <span id="fpsCounter">60 FPS</span> • <span id="particleCounter">0 hạt</span>
+      </div>
+
+      <!-- Floating Music Player Button -->
+      <button type="button" class="floating-music-btn" id="musicToggle" aria-label="Bật/Tắt nhạc" title="Bật/Tắt nhạc">
+        <span class="music-icon" id="musicIcon">🎵</span>
+      </button>
+
+      <!-- Main scrollable screen container -->
+      <div class="screen-viewport">
+
+        <!-- ================= SCREEN 1: LỜI MỜI CUTE ================= -->
+        <section id="screen1" class="screen-page active">
+          <div class="screen-content">
+            <div class="badge-tag pulse-subtle">
+              <span>Gửi cho b Tâm 💕 🎆</span>
+            </div>
+
+            <h1 class="main-title">Anh có điều muốn nói với em....</h1>
+
+            <p class="intro-letter">
+              Cuối tuần này thứ 7 đi ăn xong đi xem pháo hoa với anh đê!!! Anh nói để thông báo không phải xin ý kiến ...🥺💌
+            </p>
+
+            <!-- Polaroid photo frame -->
+            <div class="polaroid-wrapper">
+              <div class="polaroid-pin">📍</div>
+              <div class="polaroid-card">
+                <div class="polaroid-image-box">
+                  <img src="assets/tamm.jpg" alt="Tâm" id="crushPhoto"
+                    onerror="this.src='assets/ngoc.jpg'" />
+                </div>
+                <div class="polaroid-caption">Cái con bé hoạt bát, tinh nghịch ạ ✨</div>
+              </div>
+            </div>
+
+            <!-- Invitation query box -->
+            <div class="question-box">
+              <span class="question-text">Hôm tới mình đi xem pháo hoa cùng nhau nha! 🎆🥺</span>
+            </div>
+
+            <!-- Interactive buttons container -->
+            <div class="buttons-playground" id="buttonsPlayground">
+              <!-- Yes Button -->
+              <button type="button" class="btn-primary-yes" id="btnYes">
+                <span class="btn-text">Dạ cóooo 💕</span>
+                <span class="btn-sparkle">🎆</span>
+              </button>
+
+              <!-- Runaway No Button -->
+              <button type="button" class="btn-secondary-no" id="btnNo">
+                <span id="btnNoText">Nô</span>
+              </button>
+            </div>
+
+            <div class="hint-caption">
+              <span>Nút "Nô" hơi khó bấm một xíu nha 😜</span>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= SCREEN 2: CHỌN NGÀY, GIỜ & MÓN ================= -->
+        <section id="screen2" class="screen-page">
+          <div class="screen-content">
+            <div class="badge-tag">
+              <span>Chọn giờ & món nè 🎆</span>
+            </div>
+
+            <h2 class="section-title">Mình chốt kèo thôi nào</h2>
+            <p class="section-subtitle">
+              Em chọn giờ với món em thích đi, anh chiều
+            </p>
+
+            <!-- 1. FIXED DATE SECTION -->
+            <div class="card-section">
+              <div class="card-header-row">
+                <span class="card-label">📅 Ngày hẹn (Đã chốt cứng 🎆)</span>
+              </div>
+
+              <div class="calendar-card fixed-date-card">
+                <!-- Highlight Hero Box -->
+                <div class="date-hero-banner">
+                  <div class="date-hero-icon">🎆</div>
+                  <div class="date-hero-info">
+                    <div class="date-hero-title">Thứ Bảy, 10/10/2026</div>
+                    <div class="date-hero-desc">Đêm hội pháo hoa rực rỡ Thủ đô ✨</div>
+                  </div>
+                  <div class="date-hero-status">ĐÃ CHỐT 🔒</div>
+                </div>
+
+                <div class="calendar-title-bar">
+                  <span class="calendar-month-text">Tháng 10 2026</span>
+                  <span class="calendar-tag">Mùa thu Hà Nội 🍁</span>
+                </div>
+
+                <div class="calendar-weekdays">
+                  <span>T2</span>
+                  <span>T3</span>
+                  <span>T4</span>
+                  <span>T5</span>
+                  <span>T6</span>
+                  <span class="highlight-sat">T7</span>
+                  <span class="sunday">CN</span>
+                </div>
+
+                <div class="calendar-grid" id="calendarDays">
+                  <!-- Generated by JS for October 2026 (day 10 fixed) -->
+                </div>
+
+                <div class="calendar-lock-hint" id="calendarHint">
+                  <span>✨ Anh chốt cứng ngày 10/10 để đưa em đi ngắm pháo hoa rùi nha! ❤️</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. TIME PICKER -->
+            <div class="card-section">
+              <div class="card-header-row">
+                <span class="card-label">⏰ Chọn giờ</span>
+              </div>
+
+              <div class="time-picker-card">
+                <div class="time-wheels-container">
+                  <!-- Hours wheel -->
+                  <div class="time-wheel-col">
+                    <label class="wheel-label">Giờ</label>
+                    <div class="wheel-picker" id="hourPicker">
+                      <!-- 00 - 23 items -->
+                    </div>
+                  </div>
+
+                  <div class="time-colon">:</div>
+
+                  <!-- Minutes wheel -->
+                  <div class="time-wheel-col">
+                    <label class="wheel-label">Phút</label>
+                    <div class="wheel-picker" id="minutePicker">
+                      <!-- 00 - 55 step 5 -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Live Summary preview -->
+                <div class="live-selection-preview" id="livePreviewText">
+                  <span>💕 Thứ Bảy, 10/10/2026 lúc 20:05 (Đêm pháo hoa 🎆)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. FOOD SELECTION -->
+            <div class="card-section">
+              <div class="card-header-row">
+                <span class="card-label">🍽️ Chọn món em muốn ăn</span>
+              </div>
+
+              <div class="food-list" id="foodList">
+                <div class="food-item-card active" data-food="Mì Cay">
+                  <div class="food-icon-wrap">🍜</div>
+                  <div class="food-info">
+                    <div class="food-name">Mì Cay</div>
+                    <div class="food-desc">Ăn cay một chút cho cuộc đời thêm đậm vị hí hí</div>
+                  </div>
+                  <div class="food-check">✓</div>
+                </div>
+
+                <div class="food-item-card" data-food="Đồ Nhật">
+                  <div class="food-icon-wrap">🍚</div>
+                  <div class="food-info">
+                    <div class="food-name">Đồ Nhật</div>
+                    <div class="food-desc">Ramen, Udon hay là gì nhỉ </div>
+                  </div>
+                  <div class="food-check">✓</div>
+                </div>
+
+                <div class="food-item-card" data-food="Đồ Hàn">
+                  <div class="food-icon-wrap">🍳</div>
+                  <div class="food-info">
+                    <div class="food-name">Đồ Hàn</div>
+                    <div class="food-desc">Chốt kèo món Hàn là chuẩn bài luôn nha</div>
+                  </div>
+                  <div class="food-check">✓</div>
+                </div>
+
+                <div class="food-item-card" data-food="Nem nướng">
+                  <div class="food-icon-wrap">🍲</div>
+                  <div class="food-info">
+                    <div class="food-name">Nem nướng</div>
+                    <div class="food-desc">Ngồi lâu tám chuyện, ấm áp lắm nè</div>
+                  </div>
+                  <div class="food-check">✓</div>
+                </div>
+
+                <div class="food-item-card" data-food="Gà Rán">
+                  <div class="food-icon-wrap">🍗</div>
+                  <div class="food-info">
+                    <div class="food-name">Gà Rán</div>
+                    <div class="food-desc">Jolibee, lotte, kfc, texas, kimari hay gì</div>
+                  </div>
+                  <div class="food-check">✓</div>
+                </div>
+
+                <div class="food-item-card" data-food="Bún Bò">
+                  <div class="food-icon-wrap">🥢</div>
+                  <div class="food-info">
+                    <div class="food-name">Bún bò</div>
+                    <div class="food-desc">bún gì cũng được</div>
+                  </div>
+                  <div class="food-check">✓</div>
+                </div>
+
+                <div class="food-item-card food-custom-card" data-food="custom" id="customFoodCard">
+                  <div class="food-icon-wrap">✍️</div>
+                  <div class="food-info">
+                    <div class="food-name">Khác</div>
+                    <div class="food-desc">Em muốn ăn gì thì điền nha </div>
+                    <div class="custom-food-input-wrap" id="customFoodWrap" style="display: none;">
+                      <input type="text" id="customFoodInput" class="custom-food-input"
+                        placeholder="Ví dụ: Bingsu, Trà sữa, Pizza..." maxlength="50" />
+                    </div>
+                  </div>
+                  <div class="food-check">✓</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Confirm button -->
+            <div class="sticky-footer-action">
+              <button type="button" class="btn-primary-confirm" id="btnConfirm">
+                <span>Xác nhận chốt kèo ngắm pháo hoa 🎆🤍</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+
+        <!-- ================= SCREEN 3: XÁC NHẬN CHỐT KÈO ================= -->
+        <section id="screen3" class="screen-page">
+          <div class="screen-content">
+            <div class="chat-bubble-badge">
+              <span>Tuyệt 💖</span>
+            </div>
+
+            <h2 class="congrats-title">Được rùiiiii 🎆✨</h2>
+
+            <!-- Summary banner -->
+            <div class="summary-highlight-card">
+              <p class="highlight-main-text" id="summaryDynamicText">
+                Được rùiii, vậy Thứ Bảy, 10/10/2026 mình đi ăn Đồ Hàn rồi cùng nhau ngắm pháo hoa lúc 20:05 nha 💕
+              </p>
+              <p class="highlight-sub-text">
+                Anh chốt lịch rồi đó, em chỉ cần chuẩn bị xinh là được, đúng giờ anh rước ✨
+              </p>
+            </div>
+
+            <!-- Invitation Receipt / Ticket card -->
+            <div class="ticket-card">
+              <div class="ticket-cutout-top"></div>
+              <div class="ticket-header">
+                <span class="ticket-badge">💌 THIỆP MỜI NGẮM PHÁO HOA</span>
+                <span class="ticket-hearts">🎆✨🎆</span>
+              </div>
+
+              <div class="ticket-table">
+                <div class="ticket-row">
+                  <span class="ticket-col-label">Người mời</span>
+                  <span class="ticket-col-value highlight-pink">Việt</span>
+                </div>
+                <div class="ticket-row">
+                  <span class="ticket-col-label">Người được mời</span>
+                  <span class="ticket-col-value highlight-pink">Tâm</span>
+                </div>
+                <div class="ticket-row">
+                  <span class="ticket-col-label">Ngày</span>
+                  <span class="ticket-col-value highlight-gold" id="ticketDate">Thứ Bảy, 10/10/2026 🎆</span>
+                </div>
+                <div class="ticket-row">
+                  <span class="ticket-col-label">Giờ</span>
+                  <span class="ticket-col-value" id="ticketTime">20:05</span>
+                </div>
+                <div class="ticket-row">
+                  <span class="ticket-col-label">Món</span>
+                  <span class="ticket-col-value" id="ticketFood">Đồ Hàn</span>
+                </div>
+              </div>
+
+              <!-- Status sending email -->
+              <div class="send-status" id="sendStatus">
+                <span class="status-icon">🚀</span>
+                <span class="status-msg">Đang thông báo cho anh Việt...</span>
+              </div>
+
+              <div class="ticket-cutout-bottom"></div>
+            </div>
+
+            <!-- Re-pick button -->
+            <div class="action-repick-wrap">
+              <button type="button" class="btn-secondary-repick" id="btnRepick">
+                <span>Chọn lại giờ & món nè ↺</span>
+              </button>
+            </div>
+
+            <!-- Final warning / cute quote -->
+            <div class="final-warning">
+              <span>Chốt lịch rồi đó, bùng thì ăn đấm nhé 😜💕</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
